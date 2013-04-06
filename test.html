@@ -1,0 +1,39 @@
+<html>
+<head>
+<script src="ArrayIterator.js"></script>
+</head>
+<body>
+<script>
+
+function itstrue(test) {
+    if (!!eval(test) !== true)
+        console.error("FAIL -  " + test);
+    else
+        console.log("OK   -  " + test);
+};
+
+var ai = new ArrayIterator([1,2,3]);
+
+itstrue('ai.key() == 0');
+itstrue('ai.current() == 1');
+itstrue('ai.next() == 2');
+itstrue('ai.key() == 1');
+itstrue('ai.next() == 3');
+itstrue('ai.key() == 2');
+itstrue('ai.next() == "\0" // the void char');
+itstrue('ai.key() == 2');
+itstrue('ai.next() == "\0" // the void char');
+itstrue('ai.key() == 2');
+itstrue('ai.prev() == 2');
+itstrue('ai.key() == 1');
+itstrue('ai.prev() == 1');
+itstrue('ai.key() == 0');
+itstrue('ai.prev() == "\0" // no more previous items, return the void char');
+itstrue('ai.key() == 0');
+itstrue('ai.prev() == "\0" // no more items coming, return the void char');
+itstrue('ai.key() == 0');
+ai.next(); ai.reset(); itstrue('ai.current() == 1 // reset() works');
+
+</script>
+</body>
+</html>
